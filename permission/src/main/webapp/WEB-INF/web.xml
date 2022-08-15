@@ -13,11 +13,13 @@
     <!-- Spring beans 配置文件所在目录 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
+        <!--指定classpath之后，resources就去里面找文件-->
         <param-value>classpath:applicationContext.xml</param-value>
     </context-param>
 
     <!-- spring mvc 配置 -->
     <servlet>
+        <!--相关的文件是：spring-servlet.xml ，后半部分固定是servlet，前半部分也就是下一行写的servlet-name -->
         <servlet-name>spring</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     </servlet>
@@ -30,7 +32,7 @@
         -->
     </servlet-mapping>
 
-    <!-- Encoding -->
+    <!-- 指定编码配置Encoding过滤器 -->
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -48,7 +50,7 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- druid -->
+    <!-- 配置druid servlet -->
     <servlet>
         <servlet-name>DruidStatServlet</servlet-name>
         <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
@@ -81,6 +83,7 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!--配置loginFilter-->
     <filter>
         <filter-name>loginFilter</filter-name>
         <filter-class>com.mmall.filter.LoginFilter</filter-class>

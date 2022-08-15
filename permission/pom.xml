@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.mmall</groupId>
+    <groupId>org.mmall</groupId>
     <artifactId>permission</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>permission Maven Webapp</name>
     <url>http://maven.apache.org</url>
+
 
     <properties>
         <springframework.version>4.3.10.RELEASE</springframework.version>
@@ -21,6 +21,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!--bean和上下文-->
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -44,6 +45,7 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${springframework.version}</version>
         </dependency>
+        <!--连接数据库-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
@@ -107,12 +109,12 @@
             <version>1.7.22</version>
         </dependency>
 
-<!--        &lt;!&ndash; jsp api &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.tomcat</groupId>-->
-<!--            <artifactId>jsp-api</artifactId>-->
-<!--            <version>6.0.36</version>-->
-<!--        </dependency>-->
+        <!--        &lt;!&ndash; jsp api &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.tomcat</groupId>-->
+        <!--            <artifactId>jsp-api</artifactId>-->
+        <!--            <version>6.0.36</version>-->
+        <!--        </dependency>-->
         <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jsp-api -->
         <!-- https://mvnrepository.com/artifact/org.apache.tomcat/jsp-api -->
         <dependency>
@@ -179,7 +181,6 @@
         </dependency>
 
     </dependencies>
-
     <build>
         <finalName>permission</finalName>
     </build>

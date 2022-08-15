@@ -14,10 +14,12 @@
         <!---->
     <!--</typeAliases>-->
 
+    <!--前后plugin-->
     <!--<plugins>-->
         <!--<plugin interceptor=""></plugin>-->
     <!--</plugins>-->
 
+    <!--转换为本地映像-->
     <!--<typeHandlers>-->
         <!---->
     <!--</typeHandlers>-->
