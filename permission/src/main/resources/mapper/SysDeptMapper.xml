@@ -35,7 +35,7 @@
       #{operator,jdbcType=VARCHAR}, #{operateTime,jdbcType=TIMESTAMP}, #{operateIp,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.mmall.model.SysDept" keyProperty="id" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.mmall.model.SysDept" >
     insert into sys_dept
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -138,43 +138,4 @@
       operate_ip = #{operateIp,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
-  <select id="getAllDept" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from sys_dept
-  </select>
-
-  <select id="getChildDeptListByLevel" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from sys_dept
-    WHERE level like #{level} || '.%'
-  </select>
-
-  <update id="batchUpdateLevel" parameterType="map">
-    <foreach collection="sysDeptList" item="sysDept" separator=";">
-      UPDATE sys_dept
-      SET level = #{dept.level}
-      WHERE id = #{dept.id}
-    </foreach>
-  </update>
-
-  <select id="countByNameAndParentId" parameterType="map" resultType="int">
-    SELECT count(1)
-    FROM sys_dept
-    WHERE name = #{name}
-    <if test="parentId != null">
-      AND parent_id = #{parentId}
-    </if>
-    <if test="id != null">
-      AND id != #{id}
-    </if>
-  </select>
-
-  <select id="countByParentId" parameterType="int" resultType="int">
-    SELECT count(1)
-    FROM sys_dept
-    WHERE parent_id = #{deptId}
-  </select>
 </mapper>

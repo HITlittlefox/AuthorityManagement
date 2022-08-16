@@ -10,12 +10,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class BeanValidator {
 
@@ -30,7 +25,7 @@ public class BeanValidator {
             LinkedHashMap errors = Maps.newLinkedHashMap();
             Iterator iterator = validateResult.iterator();
             while (iterator.hasNext()) {
-                ConstraintViolation violation = (ConstraintViolation)iterator.next();
+                ConstraintViolation violation = (ConstraintViolation) iterator.next();
                 errors.put(violation.getPropertyPath().toString(), violation.getMessage());
             }
             return errors;

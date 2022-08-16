@@ -4,7 +4,6 @@ import com.mmall.common.ApplicationContextHelper;
 import com.mmall.common.JsonData;
 import com.mmall.dao.SysAclModuleMapper;
 import com.mmall.exception.ParamException;
-import com.mmall.exception.PermissionException;
 import com.mmall.model.SysAclModule;
 import com.mmall.param.TestVo;
 import com.mmall.util.BeanValidator;
@@ -14,8 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 
 @Controller
@@ -45,9 +44,30 @@ public class TestController {
     @ResponseBody
     public JsonData hello() {
         log.info("hello");
-        throw new PermissionException("test exception");
-        // return JsonData.success("hello, permission");
+
+        return JsonData.success("hello, permission");
+        //手动造异常
+        //throw new PermissionException("test exception");
+        //throw new RuntimeException("test exception");
     }
+
+
+    @RequestMapping("/validate0.json")
+    @ResponseBody
+    public JsonData validate0(TestVo vo) throws ParamException {
+        log.info("validate");
+        try {
+            Map<String, String> map = BeanValidator.validateObject(vo);
+            if (map != null && map.entrySet().size() > 0) {
+                for (Map.Entry<String, String> entry : map.entrySet()) {
+                    log.info("{}->{}", entry.getKey(), entry.getValue());
+                }
+            }
+        } catch (Exception e) {
+        }
+        return JsonData.success("test validate");
+    }
+
 
     @RequestMapping("/validate.json")
     @ResponseBody

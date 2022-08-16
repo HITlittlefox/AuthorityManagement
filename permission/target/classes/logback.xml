@@ -7,6 +7,7 @@
         <encoder>
             <!--日期配置                           进程         级别    日志名称  message-->
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+            <!--<pattern>[%thread] %-5level %logger - %msg%n</pattern>-->
         </encoder>
     </appender>
 

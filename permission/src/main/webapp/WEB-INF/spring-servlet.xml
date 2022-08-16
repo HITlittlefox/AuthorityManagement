@@ -20,9 +20,8 @@
     <context:component-scan base-package="com.mmall.controller"/>
     <context:component-scan base-package="com.mmall.service"/>
 
-    <!--使用什么样的代码去处理请求-->
     <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />-->
-    <!--使用什么样的视图返回请求-->
+
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
 
     <!--  处理json  -->
