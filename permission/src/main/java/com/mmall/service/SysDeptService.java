@@ -29,8 +29,10 @@ public class SysDeptService {
     private SysLogService sysLogService;
 
     public void save(DeptParam param) {
+        // 验证
         BeanValidator.check(param);
-        if(checkExist(param.getParentId(), param.getName(), param.getId())) {
+        // 部门是否重复
+        if (checkExist(param.getParentId(), param.getName(), param.getId())) {
             throw new ParamException("同一层级下存在相同名称的部门");
         }
         SysDept dept = SysDept.builder().name(param.getName()).parentId(param.getParentId())
@@ -46,12 +48,12 @@ public class SysDeptService {
 
     public void update(DeptParam param) {
         BeanValidator.check(param);
-        if(checkExist(param.getParentId(), param.getName(), param.getId())) {
+        if (checkExist(param.getParentId(), param.getName(), param.getId())) {
             throw new ParamException("同一层级下存在相同名称的部门");
         }
         SysDept before = sysDeptMapper.selectByPrimaryKey(param.getId());
         Preconditions.checkNotNull(before, "待更新的部门不存在");
-        if(checkExist(param.getParentId(), param.getName(), param.getId())) {
+        if (checkExist(param.getParentId(), param.getName(), param.getId())) {
             throw new ParamException("同一层级下存在相同名称的部门");
         }
 
@@ -67,7 +69,7 @@ public class SysDeptService {
     }
 
     @Transactional
-    private void updateWithChild(SysDept before, SysDept after) {
+    void updateWithChild(SysDept before, SysDept after) {
         String newLevelPrefix = after.getLevel();
         String oldLevelPrefix = before.getLevel();
         if (!after.getLevel().equals(before.getLevel())) {
@@ -104,7 +106,7 @@ public class SysDeptService {
         if (sysDeptMapper.countByParentId(dept.getId()) > 0) {
             throw new ParamException("当前部门下面有子部门，无法删除");
         }
-        if(sysUserMapper.countByDeptId(dept.getId()) > 0) {
+        if (sysUserMapper.countByDeptId(dept.getId()) > 0) {
             throw new ParamException("当前部门下面有用户，无法删除");
         }
         sysDeptMapper.deleteByPrimaryKey(deptId);
